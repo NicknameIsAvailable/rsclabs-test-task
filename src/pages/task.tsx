@@ -1,5 +1,4 @@
 import { notesApi } from "@/shared/api";
-import { INote } from "@/shared/types/post";
 import { findNoteBySlug } from "@/shared/utils/createSlug";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router";
@@ -20,7 +19,7 @@ export const TaskPage = () => {
     queryFn: notesApi.getAll,
   });
 
-  const note = findNoteBySlug(notes as INote[], String(slug));
+  const note = findNoteBySlug(notes?.data || [], String(slug));
 
   if (isLoading) {
     return (

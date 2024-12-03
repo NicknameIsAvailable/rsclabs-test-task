@@ -51,7 +51,6 @@ export const HomePage = () => {
   };
 
   const handleDelete = (id: number) => {
-    console.log("delete", id);
     deleteMutation.mutate(id);
   };
 
@@ -59,12 +58,13 @@ export const HomePage = () => {
     updateMutation.mutate({ ...note, completed });
   };
 
+  console.log({ notes });
+
   return (
     <main className="flex flex-col gap-4">
       <h1 className="font-bold text-4xl">Заметки</h1>
       <NotesTable
-        // @ts-ignore
-        data={(notes as INote[]) || []}
+        data={notes?.data || []}
         onEdit={handleEdit}
         onDelete={handleDelete}
         onToggleComplete={handleToggleComplete}
